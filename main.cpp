@@ -5,9 +5,28 @@ using namespace std;
 
 // This function performs a stable selection sort on a vector of any type.
 // `pos` specifies the index to sort by if sorting a vector of pairs.
+
+
 template <typename T>
-void stableSelectionSort(vector<T>& a) {
-    
+void stableSelectionSort(vector<T>& v) {
+    int n = v.size();
+
+for (int i = 0; i < n; ++i) {
+    int min = i;
+for (int j = i + 1; j < n; ++j) {
+        if (v[j] < v[min]) {
+            min = j;
+            }
+        }
+    if (min != i) {
+            T minv = v[min];
+        
+    for (int l = min; l > i; --l) {
+        v[l] = v[l - 1];
+        }
+        v[i] = minv;
+    }
+}
 }
 
 // Unstable Selection Sort given in slides
@@ -34,7 +53,7 @@ int main() {
     cout << endl;
 
     // Sort by the second element of the pairs
-    selectionSort(arr);
+    stableSelectionSort(arr);
 
     // Print sorted array
     cout << "Sorted array by the first element:" << endl;
